@@ -3,14 +3,7 @@
 import { motion } from "motion/react";
 import { useInView } from "react-intersection-observer";
 import { skillCategories } from "@/data/features";
-import {
-  Code2,
-  Palette,
-  Wrench,
-  Sparkles,
-  ArrowUpRight,
-  Layers3,
-} from "lucide-react";
+import { Code2, Palette, Wrench, Sparkles, ArrowUpRight } from "lucide-react";
 
 const categoryIcons = [Code2, Palette, Wrench, Sparkles];
 

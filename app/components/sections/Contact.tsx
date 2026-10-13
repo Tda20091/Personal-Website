@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { useInView } from "react-intersection-observer";
-import { contactInfo } from "@/data/contacts";
+import { contactInfo, profile_img } from "@/data/contacts";
 import {
   ArrowUpRight,
   BriefcaseBusiness,
@@ -96,7 +96,7 @@ const Contact = () => {
               <div className="group/portrait relative w-full max-w-70 overflow-hidden rounded-xl border border-white/10 bg-slate-900 shadow-xl shadow-black/30 transition-all duration-500 hover:border-purple-400/30 hover:shadow-purple-950/30">
                 <div className="relative aspect-5/7 overflow-hidden">
                   <Image
-                    src="/about/FORMAL.jpg"
+                    src={profile_img}
                     alt="Christopher Marajay"
                     width={400}
                     height={500}
@@ -193,7 +193,7 @@ const Contact = () => {
                       inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 12 }
                     }
                     transition={{ duration: 0.35, delay: 0.2 + index * 0.08 }}
-                    className="group/link flex min-w-0 items-center gap-2.5 rounded-lg border border-white/[0.07] bg-white/2.5 p-2.5 transition-all duration-300 hover:border-purple-400/25 hover:bg-purple-500/[0.06] hover:shadow-lg hover:shadow-purple-950/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400/60"
+                    className="group/link flex min-w-0 items-center gap-2.5 rounded-lg border border-white/[0.07] bg-white/2.5 p-2.5 transition-all duration-300 hover:border-purple-400/25 hover:bg-purple-500/6 hover:shadow-lg hover:shadow-purple-950/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400/60"
                   >
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-purple-400/15 bg-purple-500/8 text-purple-300 transition-all duration-300 group-hover/link:border-purple-400/30 group-hover/link:bg-purple-500/15 group-hover/link:text-purple-200">
                       <contact.icon size={15} />

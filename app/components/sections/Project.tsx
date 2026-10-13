@@ -67,7 +67,7 @@ const Project = () => {
                   delay: 0.15 + index * 0.12,
                 }}
                 whileHover={{ y: -5 }}
-                className={`group relative isolate overflow-hidden rounded-3xl border border-white/10 bg-white/3 shadow-xl shadow-black/10 backdrop-blur-sm transition-colors duration-300 hover:border-purple-400/40 hover:bg-white/[0.05] ${
+                className={`group relative isolate overflow-hidden rounded-3xl border border-white/10 bg-white/3 shadow-xl shadow-black/10 backdrop-blur-sm transition-colors duration-300 hover:border-purple-400/40 hover:bg-white/5 ${
                   isFeatured ? "md:col-span-2 lg:col-span-2" : ""
                 }`}
               >
