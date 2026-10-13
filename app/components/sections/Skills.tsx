@@ -1,35 +1,19 @@
-"use client";
-
-import { motion } from "motion/react";
-import { useInView } from "react-intersection-observer";
 import { skillCategories } from "@/data/features";
 import { Code2, Palette, Wrench, Sparkles, ArrowUpRight } from "lucide-react";
 
 const categoryIcons = [Code2, Palette, Wrench, Sparkles];
 
 const Skills = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
   return (
     <section
       id="skills"
-      className="relative overflow-hidden px-4 py-16 mb-20 sm:px-6 lg:px-8"
+      className="relative mb-20 overflow-hidden px-4 py-16 sm:px-6 lg:px-8"
     >
-      {/* Ambient background */}
       <div className="pointer-events-none absolute left-0 top-1/4 -z-10 h-72 w-72 rounded-full bg-purple-600/10 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-0 right-0 -z-10 h-72 w-72 rounded-full bg-blue-600/10 blur-[120px]" />
 
-      <div ref={ref} className="mx-auto max-w-7xl">
-        {/* Section heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="mb-14 text-center"
-        >
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-14 text-center">
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-400/20 bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-300">
             <Sparkles size={15} />
             My Tech stack
@@ -48,32 +32,22 @@ const Skills = () => {
             A growing collection of technologies and tools I use to create
             modern, functional, and engaging digital experiences.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Skill cards */}
         <div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((categoryInfo, categoryIndex) => {
             const Icon = categoryIcons[categoryIndex % categoryIcons.length];
 
             return (
-              <motion.article
+              <article
                 key={categoryInfo.category}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.1 + categoryIndex * 0.12,
-                }}
-                whileHover={{ y: -5 }}
-                className="group relative flex h-full min-h-87.5 flex-col overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-white/6 to-white/1.5 p-6 shadow-xl shadow-black/10 backdrop-blur-xl transition-all duration-300 hover:border-purple-400/30 sm:p-7"
+                className="group relative flex h-full min-h-87.5 flex-col overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-white/6 to-white/1.5 p-6 shadow-xl shadow-black/10 backdrop-blur-xl transition-colors duration-200 hover:border-purple-400/30 sm:p-7"
               >
-                {/* Decorative glow */}
-                <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-purple-500/8 blur-3xl transition-opacity duration-500 group-hover:bg-purple-500/15" />
+                <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-purple-500/8 blur-3xl group-hover:bg-purple-500/15" />
 
-                {/* Card header */}
                 <div className="relative mb-7 flex items-start justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-purple-400/20 bg-linear-to-br from-purple-500/20 to-blue-500/10 text-purple-300 shadow-inner shadow-purple-500/5 transition-transform duration-300 group-hover:scale-105">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-purple-400/20 bg-linear-to-br from-purple-500/20 to-blue-500/10 text-purple-300 shadow-inner shadow-purple-500/5">
                       <Icon size={25} strokeWidth={1.7} />
                     </div>
 
@@ -90,38 +64,26 @@ const Skills = () => {
 
                   <ArrowUpRight
                     size={19}
-                    className="mt-1 shrink-0 text-slate-600 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-purple-300"
+                    className="mt-1 shrink-0 text-slate-600 group-hover:text-purple-300"
                   />
                 </div>
 
-                {/* Divider */}
                 <div className="relative mb-6 h-px bg-linear-to-r from-purple-400/30 via-white/10 to-transparent" />
 
-                {/* Skill tiles */}
                 <div className="relative grid flex-1 grid-cols-2 content-start gap-3">
-                  {categoryInfo.skills.map((skill, skillIndex) => (
-                    <motion.div
+                  {categoryInfo.skills.map((skill) => (
+                    <div
                       key={skill.name}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={
-                        inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
-                      }
-                      transition={{
-                        duration: 0.4,
-                        delay: 0.2 + categoryIndex * 0.1 + skillIndex * 0.05,
-                      }}
-                      whileHover={{ scale: 1.03 }}
                       className="flex min-h-14.5 items-center gap-2.5 rounded-xl border border-white/[0.07] bg-slate-950/40 px-3 py-3 transition-colors duration-200 hover:border-purple-400/30 hover:bg-purple-500/8 sm:px-3.5"
                     >
                       <span className="h-2 w-2 shrink-0 rounded-full bg-linear-to-r from-purple-400 to-cyan-400 shadow-sm shadow-purple-400/30" />
                       <span className="text-xs font-medium leading-5 text-slate-300 sm:text-sm">
                         {skill.name}
                       </span>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
 
-                {/* Card footer */}
                 <div className="relative mt-7 flex items-center justify-between border-t border-white/[0.07] pt-4">
                   <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
                     Skill collection
@@ -134,9 +96,8 @@ const Skills = () => {
                   </div>
                 </div>
 
-                {/* Bottom hover accent */}
-                <div className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-linear-to-r from-purple-500 via-blue-500 to-cyan-400 transition-transform duration-500 group-hover:scale-x-100" />
-              </motion.article>
+                <div className="absolute inset-x-0 bottom-0 h-0.5 bg-linear-to-r from-purple-500 via-blue-500 to-cyan-400 opacity-0 group-hover:opacity-100" />
+              </article>
             );
           })}
         </div>

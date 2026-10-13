@@ -1,40 +1,19 @@
 "use client";
 
-import React from "react";
-import { useInView } from "react-intersection-observer";
-import { motion } from "motion/react";
-import { feature } from "@/data/features";
+import { feature, skills } from "@/data/features";
 
 const About = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  const skills = [
-    "React",
-    "TypeScript",
-    "Tailwind CSS",
-    "API Integration",
-    "Problem Solving",
-    "Continuous Learning",
-  ];
-
   return (
     <section
       id="about"
       className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-8"
     >
-      <div className="pointer-events-none absolute left-0 top-20 -z-10 h-72 w-72 rounded-full bg-purple-600/10 blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-10 right-0 -z-10 h-72 w-72 rounded-full bg-blue-600/10 blur-[120px]" />
+      <div className="pointer-events-none absolute left-0 top-20 -z-10 h-72 w-72 rounded-full bg-purple-600/10 blur-[80px]" />
+      <div className="pointer-events-none absolute bottom-10 right-0 -z-10 h-72 w-72 rounded-full bg-blue-600/10 blur-[80px]" />
 
-      <div ref={ref} className="mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="mb-8 text-center"
-        >
+      <div className="mx-auto max-w-7xl">
+        {/* About heading */}
+        <div className="mb-8 text-center">
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-400/20 bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-300">
             <span className="h-2 w-2 rounded-full bg-purple-400" />
             Get to know me
@@ -53,17 +32,13 @@ const About = () => {
             A look into my development journey, technical interests, and
             approach to building meaningful digital experiences.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="relative mb-20 overflow-hidden rounded-3xl border border-white/10 bg-white/3 p-7 shadow-2xl shadow-purple-950/10 backdrop-blur-sm sm:p-10 lg:p-14"
-        >
+        {/* My journey */}
+        <div className="relative my-16 overflow-hidden rounded-3xl border border-white/10 bg-white/3 p-7 shadow-2xl shadow-purple-950/10 sm:p-10 lg:p-12">
           <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-purple-500/10 blur-3xl" />
 
-          <div className="relative grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:gap-16">
+          <div className="relative grid gap-10 lg:grid-cols-[0.9fr_1fr] lg:items-center lg:gap-10">
             <div>
               <span className="text-sm font-semibold uppercase tracking-[0.2em] text-purple-400">
                 My Journey
@@ -96,7 +71,8 @@ const About = () => {
             </div>
           </div>
 
-          <div className="relative mt-10 flex flex-wrap gap-3 border-t border-white/10 pt-8">
+          {/* Skills */}
+          <div className="relative mt-14 flex flex-wrap gap-3 border-t border-white/10 pt-8">
             {skills.map((skill) => (
               <span
                 key={skill}
@@ -106,14 +82,10 @@ const About = () => {
               </span>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-10"
-        >
+        {/* Features */}
+        <div className="mb-10">
           <div className="mb-8">
             <h3 className="text-2xl font-bold text-white sm:text-3xl">
               What I Bring to the Table
@@ -126,16 +98,9 @@ const About = () => {
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {feature.map((item, index) => (
-              <motion.div
+            {feature.map((item) => (
+              <div
                 key={item.title}
-                initial={{ opacity: 0, y: 25 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.4 + index * 0.1,
-                }}
-                whileHover={{ y: -6 }}
                 className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/3 p-6 transition-colors duration-300 hover:border-purple-400/30 hover:bg-white/6"
               >
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-purple-400/20 bg-linear-to-br from-purple-500/15 to-blue-500/15">
@@ -152,10 +117,10 @@ const About = () => {
                 <p className="text-sm leading-7 text-slate-400">{item.desc}</p>
 
                 <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-linear-to-r from-purple-500 to-blue-500 transition-all duration-500 group-hover:w-full" />
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

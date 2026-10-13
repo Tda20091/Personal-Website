@@ -1,17 +1,8 @@
-"use client";
-
-import { motion } from "motion/react";
-import { useInView } from "react-intersection-observer";
 import { project } from "@/data/features";
 import { ArrowUpRight, ChevronDown, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 
 const Project = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
   const hasMultipleProjects = project.length > 1;
 
   return (
@@ -22,13 +13,8 @@ const Project = () => {
       <div className="pointer-events-none absolute left-0 top-20 -z-10 h-72 w-72 rounded-full bg-purple-600/10 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-0 right-0 -z-10 h-72 w-72 rounded-full bg-blue-600/10 blur-[120px]" />
 
-      <div className="mx-auto max-w-7xl" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="mb-16 text-center"
-        >
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-16 text-center">
           <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-400/20 bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-300">
             <span className="h-2 w-2 rounded-full bg-purple-400" />
             My Portfolio
@@ -43,11 +29,11 @@ const Project = () => {
 
           <div className="mx-auto mt-6 h-1 w-20 rounded-full bg-linear-to-r from-purple-500 to-blue-500" />
 
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
             A collection of projects showcasing my development skills,
             creativity, and passion for building useful digital experiences.
           </p>
-        </motion.div>
+        </div>
 
         <div
           className={`grid grid-cols-1 gap-7 ${
@@ -58,16 +44,9 @@ const Project = () => {
             const isFeatured = hasMultipleProjects && index === 0;
 
             return (
-              <motion.article
-                key={index}
-                initial={{ opacity: 0, y: 35 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.15 + index * 0.12,
-                }}
-                whileHover={{ y: -5 }}
-                className={`group relative isolate overflow-hidden rounded-3xl border border-white/10 bg-white/3 shadow-xl shadow-black/10 backdrop-blur-sm transition-colors duration-300 hover:border-purple-400/40 hover:bg-white/5 ${
+              <article
+                key={item.title}
+                className={`group relative isolate overflow-hidden rounded-3xl border border-white/10 bg-white/3 shadow-xl shadow-black/10 backdrop-blur-sm transition-colors duration-200 hover:border-purple-400/40 hover:bg-white/5 ${
                   isFeatured ? "md:col-span-2 lg:col-span-2" : ""
                 }`}
               >
@@ -85,7 +64,7 @@ const Project = () => {
                         ? "(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 66vw"
                         : "(max-width: 768px) 100vw, 50vw"
                     }
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover"
                   />
 
                   <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/20 to-transparent opacity-90" />
@@ -122,7 +101,7 @@ const Project = () => {
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-purple-400/15 bg-purple-500/10 px-3 py-1.5 text-xs font-medium text-purple-300 transition-colors hover:border-purple-400/30 hover:bg-purple-500/20"
+                        className="rounded-full border border-purple-400/15 bg-purple-500/10 px-3 py-1.5 text-xs font-medium text-purple-300 transition-colors duration-200 hover:border-purple-400/30 hover:bg-purple-500/20"
                       >
                         {tag}
                       </span>
@@ -135,17 +114,17 @@ const Project = () => {
                         <button
                           type="button"
                           aria-label={`View ${item.title} source code repositories`}
-                          className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2.5 text-sm font-medium text-slate-300 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+                          className="inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-2.5 text-sm font-medium text-slate-300 transition-colors duration-200 hover:border-white/20 hover:bg-white/10 hover:text-white"
                         >
                           <Github size={17} />
                           Source Code
                           <ChevronDown
                             size={14}
-                            className="transition-transform duration-200 group-hover/source:rotate-180"
+                            className="group-hover/source:rotate-180"
                           />
                         </button>
 
-                        <div className="invisible absolute bottom-full left-0 z-50 w-48 translate-y-2 pb-2 opacity-0 transition-all duration-200 group-hover/source:visible group-hover/source:translate-y-0 group-hover/source:opacity-100 group-focus-within/source:visible group-focus-within/source:translate-y-0 group-focus-within/source:opacity-100">
+                        <div className="invisible absolute bottom-full left-0 z-50 w-48 pb-2 opacity-0 group-hover/source:visible group-hover/source:opacity-100 group-focus-within/source:visible group-focus-within/source:opacity-100">
                           <div className="rounded-xl border border-white/10 bg-slate-950 p-1.5 shadow-xl shadow-black/30">
                             {item.repo.map((repository) => (
                               <a
@@ -173,7 +152,7 @@ const Project = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`View live demo of ${item.title}`}
-                        className="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-purple-500 to-blue-500 px-4 py-2.5 text-sm font-medium text-white transition-all hover:shadow-lg hover:shadow-purple-500/20"
+                        className="inline-flex items-center gap-2 rounded-full bg-linear-to-r from-purple-500 to-blue-500 px-4 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:from-purple-400 hover:to-blue-400"
                       >
                         Live Demo
                         <ExternalLink size={16} />
@@ -182,8 +161,8 @@ const Project = () => {
                   </div>
                 </div>
 
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-linear-to-r from-purple-500 via-blue-500 to-cyan-400 transition-transform duration-500 group-hover:scale-x-100" />
-              </motion.article>
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1 bg-linear-to-r from-purple-500 via-blue-500 to-cyan-400 opacity-0 group-hover:opacity-100" />
+              </article>
             );
           })}
         </div>

@@ -82,3 +82,12 @@ export const skillCategories = [
     skills: [{ name: "Postman" }, { name: "Git" }],
   },
 ];
+
+export const skills = [
+  "React",
+  "TypeScript",
+  "Tailwind CSS",
+  "API Integration",
+  "Problem Solving",
+  "Continuous Learning",
+];
