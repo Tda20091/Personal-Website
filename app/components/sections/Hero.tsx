@@ -20,7 +20,7 @@ const Hero = () => {
                     transition={{ delay: 0.2, duration: 0.8 }}
                 >
                     Hi, I&apos;m{' '}
-                    <span className='bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent'>
+                    <span className='bg-linear-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent'>
                         Christopher Marajay
                     </span>
                 </motion.h1>
@@ -51,7 +51,7 @@ const Hero = () => {
                 >
                     <a
                         href='#contact'
-                        className='px-8 py-3 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 text-white rounded-full hover:shadow-lg hover:shadow-purple-500/50 transition-all'
+                        className='px-8 py-3 bg-linear-to-r from-purple-500 via-blue-500 to-cyan-500 text-white rounded-full hover:shadow-lg hover:shadow-purple-500/50 transition-all'
                     >
                         Get In Touch
                     </a>
